@@ -44,10 +44,10 @@ main(void)
     {
         if (line[0] == '\n' || line[0] == '\0') continue;
 
-        char op[5];
+        char op[6];
         double ax, ay, bx, by, s;
 
-        if (sscanf(line, "%4s", op) != 1) continue;
+        if (sscanf(line, "%5s", op) != 1) continue;
 
         switch (getCommand(op))
         {
@@ -85,7 +85,7 @@ main(void)
                 if (sscanf(line, "%*s %lf %lf", &ax, &ay) == 2)
                 {
                     double len = my_sqrt(ax * ax + ay * ay);
-                    if (len <= 1e7)
+                    if (len == 0)
                         printf("0.0000 0.0000\n");
                     else
                         printf("%.4f %.4f\n", ax / len, ay / len);
