@@ -1,0 +1,66 @@
+{
+  "course": "build-physics-engine",
+  "language": "c",
+  "language_id": 50,
+  "entrypoint": "main.c",
+  "version": 1,
+  "content_hash": "51a0a0791da3bccd",
+  "lessons": [
+    {
+      "slug": "what-is-physics",
+      "tests_hash": "4c13de147b1e"
+    },
+    {
+      "slug": "vectors",
+      "tests_hash": "98059aadbf62"
+    },
+    {
+      "slug": "integration",
+      "tests_hash": "007c40888e00"
+    },
+    {
+      "slug": "symplectic-vs-explicit-euler",
+      "tests_hash": "decd18487123"
+    },
+    {
+      "slug": "aabb",
+      "tests_hash": "b064be927434"
+    },
+    {
+      "slug": "broad-phase",
+      "tests_hash": "cff7206c8d80"
+    },
+    {
+      "slug": "narrow-phase",
+      "tests_hash": "cdde39f86f98"
+    },
+    {
+      "slug": "collision-response",
+      "tests_hash": "7aea819e2baf"
+    },
+    {
+      "slug": "constraints",
+      "tests_hash": "2427c0974e4f"
+    },
+    {
+      "slug": "coulomb-friction",
+      "tests_hash": "882217259b1e"
+    },
+    {
+      "slug": "rotational-dynamics",
+      "tests_hash": "0e4c11d40bab"
+    },
+    {
+      "slug": "sleeping",
+      "tests_hash": "77693c931780"
+    },
+    {
+      "slug": "production-physics",
+      "tests_hash": "47d1b8429414"
+    },
+    {
+      "slug": "continuous-collision-detection-ccd",
+      "tests_hash": "198b3d9a24e0"
+    }
+  ]
+}
