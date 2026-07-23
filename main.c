@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-enum Command { ADD, SUB, MUL, DOT, CROSS, LEN, NORM, INVALID };
+enum Command
+{ ADD, SUB, MUL, DOT, CROSS, LEN, NORM, INVALID };
 
-enum Command getCommand(const char *op)
+enum Command
+getCommand(const char *op)
 {
     if (strcmp(op, "ADD") == 0) return ADD;
     if (strcmp(op, "SUB") == 0) return SUB;
@@ -42,10 +44,10 @@ main(void)
     {
         if (line[0] == '\n' || line[0] == '\0') continue;
 
-        char op[4];
+        char op[5];
         double ax, ay, bx, by, s;
 
-        if (sscanf(line, "%3s", op) != 1) continue;
+        if (sscanf(line, "%4s", op) != 1) continue;
 
         switch (getCommand(op))
         {
@@ -71,7 +73,7 @@ main(void)
 
             case CROSS:
                 if (sscanf(line, "%*s %lf %lf %lf %lf", &ax, &ay, &bx, &by) == 4)
-                    printf("%.4f\n", ax * bx - ay * by);
+                    printf("%.4f\n", ax * by - ay * bx);
                 break;
 
             case LEN:
@@ -81,15 +83,18 @@ main(void)
 
             case NORM:
                 if (sscanf(line, "%*s %lf %lf", &ax, &ay) == 2)
-                    printf("%.4f %.4f\n", ax / my_sqrt(ax * ax + ay * ay), ay / my_sqrt(ax * ax + ay * ay));
+                {
+                    double len = my_sqrt(ax * ax + ay * ay);
+                    if (len <= 1e7)
+                        printf("0.0000 0.0000\n");
+                    else
+                        printf("%.4f %.4f\n", ax / len, ay / len);
+                }
                 break;
 
             default:
                 printf("Invalid command\n");
         }
-
-
-
     }
 
     return (0);
