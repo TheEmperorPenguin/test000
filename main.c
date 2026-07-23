@@ -28,7 +28,7 @@ my_sqrt(double x)
     {
         prev = guess;
         guess = 0.5 * (guess + x / guess);
-    } while ((guess - prev > 1e-7) || (prev - guess > 1e-7));
+    } while ((guess - prev > 1e-5) || (prev - guess > 1e-5));
 
     return guess;
 }
