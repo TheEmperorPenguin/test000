@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 enum Command
 { ADD, SUB, MUL, DOT, CROSS, LEN, NORM, INVALID, DT, STEP, INIT, FORCE };
@@ -33,6 +34,13 @@ struct rigid_body_2d
     vector_2d velocity;
 } rigid_body_2d;
 
+typedef
+struct aabb
+{   double min_x;
+    double min_y;
+    double max_x;
+    double max_y;
+} aabb;
 
 //  Should use <math.h> but the tests don't compile with -lm
 //  hence this function.
@@ -162,6 +170,17 @@ step_body_symplectic(rigid_body_2d body, vector_2d force, double mass, double dt
     return body;
 }
 
+bool
+is_aabb_overlap(aabb a, aabb b)
+{
+    if (a.max_x >= b.min_x  &&  a.min_x <= b.max_x &&
+        a.max_y >= b.min_y  &&  a.min_y <= b.max_y)
+    {
+        return true;
+    }
+    return false;
+}
+
 int
 main(void)
 {
@@ -176,6 +195,7 @@ main(void)
         char op[6];
         int steps;
         vector_2d a, b, result;
+        aabb box1, box2;
         double s;
         rigid_body_2d body;
 
@@ -302,7 +322,19 @@ main(void)
                 break;
 
             default:
-                printf("Invalid command\n");
+                if (sscanf(line,
+                    "%lf %lf %lf %lf %lf %lf %lf %lf",
+                    &box1.min_x, &box1.min_y,
+                    &box1.max_x, &box1.max_y,
+                    &box2.min_x, &box2.min_y,
+                    &box2.max_x, &box2.max_y) == 8)
+                {
+                    is_aabb_overlap(box1, box2) ? printf("OVERLAP") : printf("NO_OVERLAP");
+                }
+                else
+                {
+                    printf("Invalid command\n");
+                }
         }
     }
 
