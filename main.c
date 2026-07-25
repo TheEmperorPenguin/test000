@@ -329,7 +329,7 @@ main(void)
                     &box2.min_x, &box2.min_y,
                     &box2.max_x, &box2.max_y) == 8)
                 {
-                    is_aabb_overlap(box1, box2) ? printf("OVERLAP") : printf("NO_OVERLAP");
+                    is_aabb_overlap(box1, box2) ? printf("OVERLAP\n") : printf("NO_OVERLAP\n");
                 }
                 else
                 {
